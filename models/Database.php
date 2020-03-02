@@ -35,4 +35,8 @@ class Database {
     public function getTable($name): ?Table {
 
     }
+
+    public function performQuery(Query $query): QueryResult {
+        return $this->connection->performQuery($query);
+    }
 }
