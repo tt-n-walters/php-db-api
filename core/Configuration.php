@@ -57,6 +57,10 @@ class Configuration {
         file_put_contents($filename, implode("\n", array_merge($connection, $permissions));
     }
 
+    public function getConnectionAll() {
+        return $this->connection;
+    }
+
     public function getConnectionHost() {
         return $this->connection["host"];
     }
@@ -71,5 +75,17 @@ class Configuration {
 
     public function getConnectionPassword() {
         return $this->connection["password"];
+    }
+
+    public function getPermissionsAll() {
+        return $this->permissions;
+    }
+
+    public function getPermission(string $permission) {
+        if (array_key_exists($permission, $this->permissions)) {
+            return $this->permissions[permission];
+        } else {
+            
+        }
     }
 }
