@@ -24,16 +24,34 @@ class Database {
         $this->executeMode = $mode;
     }
 
-    private function pullTableNames(): void {
-        $result = new ShowQuery($this, "tables");
+    private function pullTables(): void {
+        $this->tables = array();
+        $result = $this->performQuery(new TablesQuery($this));
+        foreach ($result as $tableName) {
+            $this->addTable(new Table($tableName, $this));
+        }
     }
 
     public function getTableNames(): array {
-
+        if (count($this->tables) === 0) {
+            $this->pullTables();
+        }
+        return array_map(function(Table $table): string {
+            return $table->getName();
+        }, $this->tables);
     }
 
-    public function getTable($name): ?Table {
+    public function getTable(string $name): ?Table {
+        if (count($this->tables) === 0) {
+            $this->pullTables();
+        }
+        return array_shift(array_filter($this->tables, function(Table $table) use ($name): bool {
+            return $table->getName() == $name;
+        }));
+    }
 
+    public function addTable(Table $table): void {
+        array_push($this->tables, $table);
     }
 
     public function performQuery(Query $query): QueryResult {
