@@ -20,19 +20,19 @@ class Connection {
         }
     }
 
-    public function getDatabase() {
+    public function getDatabase(): Database {
         return new Database($this, $this->configuration->getDatabaseName);
     }
 
-    public function getPermissions() {
+    public function getPermissions(): array {
         return $this->configuration->getPermissions();
     }
 
-    public function getPermission(string $permission) {
+    public function getPermission(string $permission): ?bool {
         return $this->configuration->getPermission($permission);
     }
 
-    public function performQuery(Query $query) {
+    public function performQuery(Query $query): string {
         $result = $this->mysqli->query($query->getQueryString());
         return $query->handleResult($result);
     }

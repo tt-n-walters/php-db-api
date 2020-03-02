@@ -2,7 +2,7 @@
 
 abstract class Query {
 
-    public abstract function getQueryString();
+    public abstract function getQueryString(): string;
 
-    public abstract function handleResult();
+    public abstract function handleResult(): ?string;
 }

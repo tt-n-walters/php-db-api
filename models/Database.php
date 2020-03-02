@@ -16,23 +16,23 @@ class Database {
         $this->tables = array();
     }
 
-    public function setDebugMode(bool $mode) {
+    public function setDebugMode(bool $mode): void {
         $this->debugMode = $mode;
     }
 
-    public function setExecuteMode(bool $mode) {
+    public function setExecuteMode(bool $mode): void {
         $this->executeMode = $mode;
     }
 
-    private function pullTableNames() {
+    private function pullTableNames(): void {
         $result = new ShowQuery($this, "tables");
     }
 
-    public function getTableNames() {
+    public function getTableNames(): array {
 
     }
 
-    public function getTable($name) {
+    public function getTable($name): ?Table {
 
     }
 }
