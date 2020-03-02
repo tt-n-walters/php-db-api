@@ -52,12 +52,12 @@ class Configuration {
 
     public function saveToFile(string $filename): void {
         $connection = array_values($this->connection);
-        $permissions = array_values($this->$permissions);
+        $permissions = array_values($this->permissions);
 
         file_put_contents($filename, implode("\n", array_merge($connection, $permissions)));
     }
 
-    public function getConnectionAll(): string {
+    public function getConnectionAll(): array {
         return $this->connection;
     }
 
@@ -83,7 +83,7 @@ class Configuration {
 
     public function getPermission(string $permission): ?string {
         if (array_key_exists($permission, $this->permissions)) {
-            return $this->permissions[permission];
+            return $this->permissions[$permission];
         } else {
             return null;
         }

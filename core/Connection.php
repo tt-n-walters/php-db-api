@@ -25,7 +25,7 @@ class Connection {
     }
 
     public function getPermissions(): array {
-        return $this->configuration->getPermissions();
+        return $this->configuration->getPermissionsAll();
     }
 
     public function getPermission(string $permission): ?bool {
