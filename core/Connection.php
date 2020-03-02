@@ -32,8 +32,8 @@ class Connection {
         return $this->configuration->getPermission($permission);
     }
 
-    public function performQuery(Query $query): string {
+    public function performQuery(Query $query): QueryResult {
         $result = $this->mysqli->query($query->getQueryString());
-        return $query->handleResult($result);
+        return new QueryResult($query, $result);
     }
 }
