@@ -31,30 +31,30 @@ class Configuration {
         string $database,
         string $username,
         string $password,
-        boolean $select = true,
-        boolean $insert = true,
-        boolean $update = true,
-        boolean $delete = true,
-        boolean $create = true,
-        boolean $drop = true,
+        bool $select = true,
+        bool $insert = true,
+        bool $update = true,
+        bool $delete = true,
+        bool $create = true,
+        bool $drop = true
     ) {
         $this->connection["host"] = $host;
         $this->connection["database"] = $database;
         $this->connection["username"] = $username;
         $this->connection["password"] = $password;
-        $this->permissions["select"] = $select,
-        $this->permissions["insert"] = $insert,
-        $this->permissions["update"] = $update,
-        $this->permissions["delete"] = $delete,
-        $this->permissions["create"] = $create,
-        $this->permissions["drop"] = $drop,
+        $this->permissions["select"] = $select;
+        $this->permissions["insert"] = $insert;
+        $this->permissions["update"] = $update;
+        $this->permissions["delete"] = $delete;
+        $this->permissions["create"] = $create;
+        $this->permissions["drop"] = $drop;
     }
 
     public function saveToFile(string $filename) {
         $connection = array_values($this->connection);
-        $permissions = array_values($this->per$permissions);
+        $permissions = array_values($this->$permissions);
 
-        file_put_contents($filename, implode("\n", array_merge($connection, $permissions));
+        file_put_contents($filename, implode("\n", array_merge($connection, $permissions)));
     }
 
     public function getConnectionAll() {
