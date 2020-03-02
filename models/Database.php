@@ -25,7 +25,7 @@ class Database {
     }
 
     private function pullTableNames() {
-        
+        $result = new ShowQuery($this, "tables");
     }
 
     public function getTableNames() {

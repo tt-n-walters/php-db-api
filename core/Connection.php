@@ -3,13 +3,13 @@
 class Connection {
 
     private $configuration;
-    private $connection;
+    private $mysqli;
 
     public function __construct(Configuration $configuration) {
         $this->configuration = $configuration;
 
         try {
-            $this->connection = new mysqli(
+            $this->mysqli = new mysqli(
                 $configuration->getConnectionHost(),
                 $configuration->getConnectionDatabase(),
                 $configuration->getConnectionUsername(),
@@ -32,8 +32,8 @@ class Connection {
         return $this->configuration->getPermission($permission);
     }
 
-    public function performQuery(BaseQuery $query) {
-        $result = $query->execute($this);
-        return $result;
+    public function performQuery(Query $query) {
+        $result = $this->mysqli->query($query->getQueryString());
+        return $query->handleResult($result);
     }
 }
