@@ -4,7 +4,7 @@ class Configuration {
 
     private $connection = array(
         "host" => null,
-        "databaseName" => null,
+        "database" => null,
         "username" => null,
         "password" => null
     );
