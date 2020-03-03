@@ -24,6 +24,10 @@ class Database {
         $this->executeMode = $mode;
     }
 
+    public function getName(): string {
+        return $this->name;
+    }
+
     private function pullTables(): void {
         $this->tables = array();
         $result = $this->performQuery(new TablesQuery($this));
