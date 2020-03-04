@@ -20,7 +20,7 @@ class Configuration {
 
     public static function fromFile(string $filename): Configuration {
         if (file_exists($filename)) {
-            $file = file($filename, FILE_IGNORE_NEW_LINES) or exit("Unable to open credentials file.");
+            $file = file("credentials/" . $filename, FILE_IGNORE_NEW_LINES) or exit("Unable to open credentials file.");
 
             return new Configuration(...$file);
         }
@@ -54,7 +54,7 @@ class Configuration {
         $connection = array_values($this->connection);
         $permissions = array_values($this->permissions);
 
-        file_put_contents($filename, implode("\n", array_merge($connection, $permissions)));
+        file_put_contents("credentials/" . $filename, implode("\n", array_merge($connection, $permissions)));
     }
 
     public function getConnectionAll(): array {
